@@ -3,4 +3,7 @@ torch
 datasets
 accelerate
 openai
-gemini-api
+google-generativeai
+anthropic
+deepseek
+python-dotenv
