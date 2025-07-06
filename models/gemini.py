@@ -1,4 +1,5 @@
 import google.generativeai as genai
+import re
 from config import MODEL_CONFIGS
 
 def run_gemini(prompt: str) -> str:
@@ -9,12 +10,22 @@ def run_gemini(prompt: str) -> str:
     # Configure the API key
     genai.configure(api_key=api_key)
     
-    # Create model instance
-    model = genai.GenerativeModel(MODEL_CONFIGS["gemini"]["model"])
+    # Handle different prompt formats
+    if isinstance(prompt, dict):
+        content = prompt.get("user", prompt.get("prompt", ""))
+    else:
+        content = prompt
     
-    # Generate response
     try:
-        response = model.generate_content(prompt)
-        return response.text
+        # Create model instance
+        model = genai.GenerativeModel(MODEL_CONFIGS["gemini"]["model"])
+        response = model.generate_content(content)
+        result = response.text
+        
+        # Clean up response formatting for better evaluation
+        # Remove common prefixes like "A: " or "Answer: "
+        result = re.sub(r'^(A:|Answer:)\s*', '', result.strip())
+        
+        return result
     except Exception as e:
         return f"Error calling Gemini API: {str(e)}"

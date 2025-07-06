@@ -5,5 +5,7 @@ accelerate
 openai
 google-generativeai
 anthropic
-deepseek
 python-dotenv
+pandas
+matplotlib
+seaborn
