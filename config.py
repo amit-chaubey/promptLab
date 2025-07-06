@@ -42,15 +42,15 @@ MODEL_PROVIDERS = {
 # Model configurations
 MODEL_CONFIGS = {
     "gemini": {
-        "model": "gemini-1.5-flash",
+        "model": "gemini-2.5-flash",
         "api_key": GEMINI_API_KEY
     },
     "gpt": {
-        "model": "gpt-4",
+        "model": "gpt-4o",
         "api_key": OPENAI_API_KEY
     },
     "claude": {
-        "model": "claude-3-5-sonnet-20240620",
+        "model": "claude-3-5-sonnet-20241022",
         "api_key": ANTHROPIC_API_KEY
     },
     "deepseek": {
